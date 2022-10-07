@@ -40,7 +40,14 @@ const dbConnect = async () => {
         useUnifiedTopology: true,
         autoIndex: true,
       }
-    );
+    ).then(()=>{
+      app.listen(process.env.PORT || 4050,()=>{
+          console.log(`Server is running on ${process.env.PORT}`)
+      })
+  }).catch((error)=>{
+      console.log(error)
+  });
+
     console.log("DB Connected");
   } catch (e) {
     console.log(e.message, "error in connecting db");
